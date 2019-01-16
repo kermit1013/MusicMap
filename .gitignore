@@ -13,3 +13,7 @@ yarn-error.log
 \.idea/workspace\.xml
 
 \.idea/vcs\.xml
+
+\.idea/MusicMap\.iml
+
+\.idea/php\.xml

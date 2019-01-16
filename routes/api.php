@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/lists', 'PlayListsController@index')->name('lists.index');
+Route::post('/lists/add', 'PlayListsController@add')->name('lists.add');
+Route::put('/lists/edit', 'PlayListsController@edit')->name('lists.edit');
+Route::delete('/lists/delete', 'PlayListsController@delete')->name('lists.delete');
+
