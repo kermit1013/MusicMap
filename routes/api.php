@@ -21,3 +21,8 @@ Route::post('/lists/add', 'PlayListsController@add')->name('lists.add');
 Route::put('/lists/edit', 'PlayListsController@edit')->name('lists.edit');
 Route::delete('/lists/delete', 'PlayListsController@delete')->name('lists.delete');
 
+
+Route::get('/news', 'NewsController@index');
+Route::get('/news/recommend', 'NewsController@recommend');
+Route::get('/news/{id}', 'NewsController@show');
+
