@@ -1,11 +1,15 @@
 <template>
     <div>
-        <ol class="breadcrumb">
-          <li><a href="/">首页</a></li>
-          <li><router-link to="/list" class="pull-right">新闻</router-link></li>
-          <li class="active">{{ detail.title }}</li>
-        </ol>
-        <h3><span class="label label-success" v-if="detail.is_recommend">推荐</span> {{ detail.title }}</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><router-link to="/list" class="float-right">新聞</router-link></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ detail.title }}</li>
+            </ol>
+        </nav>
+
+
+        <h3><span class="badge badge-success" v-if="detail.is_recommend">推荐</span> {{ detail.title }}</h3>
         <p>创建时间：{{ detail.created_at }}</p>
         <div>
             {{ detail.content }}

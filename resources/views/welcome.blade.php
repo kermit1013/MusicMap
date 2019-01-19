@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="csrf-token" content="@{{ csrf_token }}">
-    <title>Laravel & Vue</title>
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
+
 <div id="app">
-    <nav class="navbar navbar-inverse">
-        <div class=" container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">LaravelVue</a>
-            </div>
-        </div>
-    </nav>
-    <div class="container main">
-        <router-view />
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">MusicMap</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
     </div>
+</nav>
+
+
+    <router-view />
 </div>
-<script type="text/javascript" src="/js/app.js"></script>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+

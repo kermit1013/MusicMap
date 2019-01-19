@@ -1,14 +1,14 @@
 import api from '../api';
 export default{
     state: {
-        recommend: [], // 推荐
+        playlists: [], // 推荐
         lists: [],  // 列表
         detail: {}  // 详情
     },
     mutations: {
         // 注意，这里可以设置 state 属性，但是不能异步调用，异步操作写到 actions 中
-        SETRECOMMEND(state, lists) {
-            state.recommend = lists;
+        SETPLAYLISTS(state, lists) {
+            state.playlists = lists;
         },
         SETLISTS(state, lists) {
             state.lists = lists;
@@ -25,13 +25,13 @@ export default{
                 document.body.scrollTop = 0;
             });
         },
-        getNewsRecommend({commit}) {
-            api.getNewsRecommend().then(function(res) {
-                commit('SETRECOMMEND', res.data);
+        getPlayLists({commit}) {
+            api.getPlayLists().then(function(res) {
+                commit('SETPLAYLISTS', res.data);
             });
         },
-        getNewsLists({commit}) {
-            api.getNewsLists().then(function(res) {
+        postPlayLists({commit}) {
+            api.postPlayLists().then(function(res) {
                 commit('SETLISTS', res.data);
             });
         }

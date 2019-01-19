@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 export default {
-  getNewsRecommend: function (params) {
-    return axios.get('api/news/recommend', {
+    getPlayLists: function (params) {
+    return axios.get('api/lists', {
       params: params
     })
   },
-  getNewsLists: function (params) {
-    return axios.get('api/news', {
+  postPlayLists: function (params) {
+    return axios.post('api/list/add', {
       params: params
     })
   },

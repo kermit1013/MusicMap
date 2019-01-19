@@ -1784,19 +1784,77 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   // 映射 vuex 上面的属性
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    recommend: function recommend(state) {
-      return state.news.recommend;
+    playlists: function playlists(state) {
+      return state.news.playlists;
     }
   }),
   created: function created() {
     // 获取推荐列表
-    this.getNewsRecommend();
+    this.getPlayLists();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getNewsRecommend']))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getPlayLists']))
 });
 
 /***/ }),
@@ -1815,6 +1873,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -1882,8 +1944,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: '',
+      url: '',
+      playlist: ''
+    };
+  },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     lists: function lists(state) {
       return state.news.lists;
@@ -37390,47 +37492,260 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "panel panel-default" }, [
-    _c(
-      "div",
-      { staticClass: "panel-heading" },
-      [
-        _vm._v("新闻推荐\n        "),
+    _c("div", { attrs: { id: "accordion" } }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header", attrs: { id: "headingOne" } }, [
+          _c(
+            "h5",
+            { staticClass: "mb-0" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link",
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapseOne",
+                    "aria-expanded": "true",
+                    "aria-controls": "collapseOne"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Playlist #1\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("router-link", { attrs: { to: { path: "/list" } } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-info float-right",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Add")]
+                )
+              ])
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
         _c(
-          "router-link",
-          { staticClass: "pull-right", attrs: { to: "/list" } },
-          [_vm._v("更多")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "list-group" },
-      _vm._l(_vm.recommend, function(row) {
-        return _c(
-          "li",
-          { staticClass: "list-group-item" },
+          "div",
+          {
+            staticClass: "collapse",
+            attrs: {
+              id: "collapseOne",
+              "aria-labelledby": "headingOne",
+              "data-parent": "#accordion"
+            }
+          },
           [
             _c(
-              "router-link",
-              { attrs: { to: { path: "/detail/" + row.id } } },
-              [
-                _vm._v(
-                  "\n                " + _vm._s(row.title) + "\n            "
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.playlists, function(row) {
+                return _c(
+                  "li",
+                  { staticClass: "list-group-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/detail/" + row.id } } },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(row.name) +
+                            "\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "pull-right" }, [
+                      _vm._v(_vm._s(row.created))
+                    ])
+                  ],
+                  1
                 )
-              ]
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right" }, [
-              _vm._v(_vm._s(row.created))
-            ])
-          ],
-          1
+              }),
+              0
+            )
+          ]
         )
-      }),
-      0
-    )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header", attrs: { id: "headingTwo" } }, [
+          _c(
+            "h5",
+            { staticClass: "mb-0" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link collapsed",
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapseTwo",
+                    "aria-expanded": "false",
+                    "aria-controls": "collapseTwo"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Playlist #2\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("router-link", { attrs: { to: { path: "/list" } } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-info float-right",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v(" Add")]
+                )
+              ])
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse",
+            attrs: {
+              id: "collapseTwo",
+              "aria-labelledby": "headingTwo",
+              "data-parent": "#accordion"
+            }
+          },
+          [
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.playlists, function(row) {
+                return _c(
+                  "li",
+                  { staticClass: "list-group-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/detail/" + row.id } } },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(row.name) +
+                            "\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "pull-right" }, [
+                      _vm._v(_vm._s(row.created))
+                    ])
+                  ],
+                  1
+                )
+              }),
+              0
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "card-header", attrs: { id: "headingThree" } },
+          [
+            _c(
+              "h5",
+              { staticClass: "mb-0" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-link collapsed",
+                    attrs: {
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseThree",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseThree"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Playlist #3\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: { path: "/list" } } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-info float-right",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v(" Add")]
+                  )
+                ])
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse",
+            attrs: {
+              id: "collapseThree",
+              "aria-labelledby": "headingThree",
+              "data-parent": "#accordion"
+            }
+          },
+          [
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.playlists, function(row) {
+                return _c(
+                  "li",
+                  { staticClass: "list-group-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/detail/" + row.id } } },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(row.name) +
+                            "\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "pull-right" }, [
+                      _vm._v(_vm._s(row.created))
+                    ])
+                  ],
+                  1
+                )
+              }),
+              0
+            )
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -37456,27 +37771,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("ol", { staticClass: "breadcrumb" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "li",
-        [
-          _c(
-            "router-link",
-            { staticClass: "pull-right", attrs: { to: "/list" } },
-            [_vm._v("新闻")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("li", { staticClass: "active" }, [_vm._v(_vm._s(_vm.detail.title))])
+    _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
+      _c("ol", { staticClass: "breadcrumb" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "breadcrumb-item" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "float-right", attrs: { to: "/list" } },
+              [_vm._v("新聞")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "breadcrumb-item active",
+            attrs: { "aria-current": "page" }
+          },
+          [_vm._v(_vm._s(_vm.detail.title))]
+        )
+      ])
     ]),
     _vm._v(" "),
     _c("h3", [
       _vm.detail.is_recommend
-        ? _c("span", { staticClass: "label label-success" }, [_vm._v("推荐")])
+        ? _c("span", { staticClass: "badge badge-success" }, [_vm._v("推荐")])
         : _vm._e(),
       _vm._v(" " + _vm._s(_vm.detail.title))
     ]),
@@ -37491,7 +37816,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { href: "/" } }, [_vm._v("首页")])])
+    return _c("li", { staticClass: "breadcrumb-item" }, [
+      _c("a", { attrs: { href: "/" } }, [_vm._v("首页")])
+    ])
   }
 ]
 render._withStripped = true
@@ -37515,44 +37842,138 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "panel panel-default" }, [
-    _c("div", { staticClass: "panel-heading" }, [_vm._v("新闻列表")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "list-group" },
-      _vm._l(_vm.lists, function(row) {
-        return _c(
-          "li",
-          { staticClass: "list-group-item" },
-          [
-            _c(
-              "router-link",
-              { attrs: { to: { path: "/detail/" + row.id } } },
-              [
-                row.is_recommend
-                  ? _c("span", { staticClass: "label label-success" }, [
-                      _vm._v("推荐")
-                    ])
-                  : _vm._e(),
-                _vm._v(
-                  "\n                " + _vm._s(row.title) + "\n            "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right" }, [
-              _vm._v(_vm._s(row.created))
-            ])
+  return _c(
+    "form",
+    {
+      staticClass: "needs-validation",
+      staticStyle: { margin: "15px" },
+      attrs: { novalidate: "" }
+    },
+    [
+      _c("div", { staticClass: "mb-3" }, [
+        _c("label", { attrs: { for: "name" } }, [_vm._v("Song Name")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.name,
+              expression: "name"
+            }
           ],
-          1
-        )
-      }),
-      0
-    )
-  ])
+          staticClass: "form-control",
+          attrs: { type: "text", id: "name", placeholder: "" },
+          domProps: { value: _vm.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.name = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "mb-3" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.url,
+              expression: "url"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "url", placeholder: "youtube site" },
+          domProps: { value: _vm.url },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.url = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-5 mb-3" }, [
+          _c("label", { attrs: { for: "playlist" } }, [
+            _vm._v("Which PlayList")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.playlist,
+                  expression: "playlist"
+                }
+              ],
+              staticClass: "custom-select d-block w-100",
+              attrs: { id: "playlist" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.playlist = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Choose...")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("#1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("#2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("#3")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "mb-4" }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-lg btn-block",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Continue to Add")]
+      )
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "url" } }, [
+      _vm._v("URL "),
+      _c("span", { staticClass: "text-muted" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -52409,8 +52830,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  getNewsRecommend: function getNewsRecommend(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/news/recommend', {
+  getPlayLists: function getPlayLists(params) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/lists', {
       params: params
     });
   },
@@ -52810,7 +53231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    recommend: [],
+    playlists: [],
     // 推荐
     lists: [],
     // 列表
@@ -52819,8 +53240,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   mutations: {
     // 注意，这里可以设置 state 属性，但是不能异步调用，异步操作写到 actions 中
-    SETRECOMMEND: function SETRECOMMEND(state, lists) {
-      state.recommend = lists;
+    SETPLAYLISTS: function SETPLAYLISTS(state, lists) {
+      state.playlists = lists;
     },
     SETLISTS: function SETLISTS(state, lists) {
       state.lists = lists;
@@ -52838,10 +53259,10 @@ __webpack_require__.r(__webpack_exports__);
         document.body.scrollTop = 0;
       });
     },
-    getNewsRecommend: function getNewsRecommend(_ref2) {
+    getPlayLists: function getPlayLists(_ref2) {
       var commit = _ref2.commit;
-      _api__WEBPACK_IMPORTED_MODULE_0__["default"].getNewsRecommend().then(function (res) {
-        commit('SETRECOMMEND', res.data);
+      _api__WEBPACK_IMPORTED_MODULE_0__["default"].getPlayLists().then(function (res) {
+        commit('SETPLAYLISTS', res.data);
       });
     },
     getNewsLists: function getNewsLists(_ref3) {
