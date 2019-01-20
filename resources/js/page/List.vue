@@ -15,6 +15,11 @@
         </div>
 
 
+        <div class="mb-3">
+            <label for="user_id">User <span class="text-muted"></span></label>
+            <input type="text" class="form-control" id="user_id" placeholder="youtube site"  v-model="user_id">
+        </div>
+
         <div class="row">
             <div class="col-md-5 mb-3">
                 <label for="playlist">Which PlayList</label>
@@ -32,7 +37,7 @@
 
 
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to Add</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" @click="postPlayLists({name,url,user_id})">Continue to Add</button>
     </form>
 
    <!-- <div class="panel panel-default">
@@ -50,25 +55,20 @@
     </div>-->
 </template>
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 export default({
     data() {
         return {
             name: '',
             url: '',
             playlist: '',
+            user_id:''
         }
     },
 
-    computed: mapState({
-        lists: state => state.news.lists
-    }),
-    created() {
-        this.getNewsLists();
-    },
     methods: {
         ...mapActions([
-            'getNewsLists'
+            'postPlayLists'
         ])
     },
 

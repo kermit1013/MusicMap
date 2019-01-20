@@ -7,10 +7,10 @@ export default{
     },
     mutations: {
         // 注意，这里可以设置 state 属性，但是不能异步调用，异步操作写到 actions 中
-        SETPLAYLISTS(state, lists) {
+        GET_PLAYLISTS (state, lists) {
             state.playlists = lists;
         },
-        SETLISTS(state, lists) {
+        ADD_PLAYLISTS(state, lists) {
             state.lists = lists;
         },
         SETDETAIL(state, detail) {
@@ -27,12 +27,13 @@ export default{
         },
         getPlayLists({commit}) {
             api.getPlayLists().then(function(res) {
-                commit('SETPLAYLISTS', res.data);
+                commit('GET_PLAYLISTS', res.data);
             });
         },
-        postPlayLists({commit}) {
-            api.postPlayLists().then(function(res) {
-                commit('SETLISTS', res.data);
+
+        postPlayLists({commit},name,url,user_id) {
+            api.postPlayLists(name,url,user_id).then(function(res) {
+                commit('ADD_PLAYLISTS', res.data);
             });
         }
     }

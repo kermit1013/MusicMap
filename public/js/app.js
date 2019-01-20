@@ -1977,24 +1977,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: '',
       url: '',
-      playlist: ''
+      playlist: '',
+      user_id: ''
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    lists: function lists(state) {
-      return state.news.lists;
-    }
-  }),
-  created: function created() {
-    this.getNewsLists();
-  },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getNewsLists']))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['postPlayLists']))
 });
 
 /***/ }),
@@ -37902,6 +37903,32 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "mb-3" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.user_id,
+              expression: "user_id"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "user_id", placeholder: "youtube site" },
+          domProps: { value: _vm.user_id },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.user_id = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-5 mb-3" }, [
           _c("label", { attrs: { for: "playlist" } }, [
@@ -37956,7 +37983,16 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-primary btn-lg btn-block",
-          attrs: { type: "submit" }
+          attrs: { type: "submit" },
+          on: {
+            click: function($event) {
+              _vm.postPlayLists({
+                name: _vm.name,
+                url: _vm.url,
+                user_id: _vm.user_id
+              })
+            }
+          }
         },
         [_vm._v("Continue to Add")]
       )
@@ -37970,6 +38006,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "url" } }, [
       _vm._v("URL "),
+      _c("span", { staticClass: "text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "user_id" } }, [
+      _vm._v("User "),
       _c("span", { staticClass: "text-muted" })
     ])
   }
@@ -52835,9 +52880,11 @@ __webpack_require__.r(__webpack_exports__);
       params: params
     });
   },
-  getNewsLists: function getNewsLists(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/news', {
-      params: params
+  postPlayLists: function postPlayLists(params) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/lists/add', {
+      name: params.name,
+      url: params.url,
+      user_id: params.user_id
     });
   },
   getNewsDetail: function getNewsDetail(id) {
@@ -52912,7 +52959,10 @@ try {
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common = {
+  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+  'X-Requested-With': 'XMLHttpRequest'
+};
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -53240,10 +53290,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   mutations: {
     // 注意，这里可以设置 state 属性，但是不能异步调用，异步操作写到 actions 中
-    SETPLAYLISTS: function SETPLAYLISTS(state, lists) {
+    GET_PLAYLISTS: function GET_PLAYLISTS(state, lists) {
       state.playlists = lists;
     },
-    SETLISTS: function SETLISTS(state, lists) {
+    ADD_PLAYLISTS: function ADD_PLAYLISTS(state, lists) {
       state.lists = lists;
     },
     SETDETAIL: function SETDETAIL(state, detail) {
@@ -53262,13 +53312,13 @@ __webpack_require__.r(__webpack_exports__);
     getPlayLists: function getPlayLists(_ref2) {
       var commit = _ref2.commit;
       _api__WEBPACK_IMPORTED_MODULE_0__["default"].getPlayLists().then(function (res) {
-        commit('SETPLAYLISTS', res.data);
+        commit('GET_PLAYLISTS', res.data);
       });
     },
-    getNewsLists: function getNewsLists(_ref3) {
+    postPlayLists: function postPlayLists(_ref3, name, url, user_id) {
       var commit = _ref3.commit;
-      _api__WEBPACK_IMPORTED_MODULE_0__["default"].getNewsLists().then(function (res) {
-        commit('SETLISTS', res.data);
+      _api__WEBPACK_IMPORTED_MODULE_0__["default"].postPlayLists(name, url, user_id).then(function (res) {
+        commit('ADD_PLAYLISTS', res.data);
       });
     }
   }
